@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RGB Cube (Slider Version)</title>
+<style>
+  body { font-family:sans-serif; margin:40px; }
+  .row { margin:15px 0; }
+  #swatch {
+    width:200px; height:200px; 
+    border:2px solid #000; 
+    margin-top:20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>RGB Cube — Slider Representation</h1>
+<p>
+Use the sliders to set Red, Green, and Blue.  
+You are choosing a point in <strong>ℝ³</strong>:
+<br>
+(<span id="rv">128</span>, <span id="gv">128</span>, <span id="bv">128</span>)
+</p>
+
+<div class="row">
+  <label>Red (R):</label><br>
+  <input type="range" id="r" min="0" max="255" value="128">
+</div>
+
+<div class="row">
+  <label>Green (G):</label><br>
+  <input type="range" id="g" min="0" max="255" value="128">
+</div>
+
+<div class="row">
+  <label>Blue (B):</label><br>
+  <input type="range" id="b" min="0" max="255" value="128">
+</div>
+
+<div id="swatch"></div>
+
+<script>
+function update() {
+  const R = r.value, G = g.value, B = b.value;
+  rv.textContent = R;
+  gv.textContent = G;
+  bv.textContent = B;
+  swatch.style.background = `rgb(${R},${G},${B})`;
+}
+r.oninput = g.oninput = b.oninput = update;
+update();
+</script>
+
+</body>
+</html>
