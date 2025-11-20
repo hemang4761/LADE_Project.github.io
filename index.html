@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>RGB Cube (Slider Version)</title>
+<title>RGB Cube Slider</title>
 <style>
-  body { font-family:sans-serif; margin:40px; }
-  .row { margin:15px 0; }
+  body { 
+    font-family:sans-serif; margin:40px; 
+  }
+  .row { 
+    margin:15px 0;
+  }
   #swatch {
     width:200px; height:200px; 
     border:2px solid #000; 
@@ -14,30 +18,31 @@
 </style>
 </head>
 <body>
-
-<h1>RGB Cube — Slider Representation</h1>
+<h1>RGB Cube, Represented by sliders</h1>
 <p>
-Use the sliders to set Red, Green, and Blue.  
-You are choosing a point in <strong>ℝ³</strong>:
+Each slider represents a dimension of a color space, or a component of our [r,g,b] color vector
 <br>
 (<span id="rv">128</span>, <span id="gv">128</span>, <span id="bv">128</span>)
 </p>
-
+<div class="column">
 <div class="row">
-  <label>Red (R):</label><br>
-  <input type="range" id="r" min="0" max="255" value="0">
+  <label>Red (R1):</label><br>
+  <input type="range" id="r" min="0" max="255" value="1">
+  <div id="r-vector">[0, 0, 0]</div>
 </div>
 
 <div class="row">
-  <label>Green (G):</label><br>
-  <input type="range" id="g" min="0" max="255" value="0">
+  <label>Green (G1):</label><br>
+  <input type="range" id="g" min="0" max="255" value="1">
+  <div id="g-vector">[0, 0, 0]</div>
 </div>
 
 <div class="row">
-  <label>Blue (B):</label><br>
-  <input type="range" id="b" min="0" max="255" value="0">
+  <label>Blue (B1):</label><br>
+  <input type="range" id="b" min="0" max="255" value="1">
+  <div id="b-vector">[0, 0, 0]</div>
 </div>
-
+</div>
 <div id="swatch"></div>
 
 <script>
@@ -47,6 +52,10 @@ function update() {
   gv.textContent = G;
   bv.textContent = B;
   swatch.style.background = `rgb(${R},${G},${B})`;
+  
+  document.getElementById('r-vector').textContent = `[${R}, 0, 0]`;
+  document.getElementById('g-vector').textContent = `[0, ${G}, 0]`;
+  document.getElementById('b-vector').textContent = `[0, 0, ${B}]`;
 }
 r.oninput = g.oninput = b.oninput = update;
 update();
